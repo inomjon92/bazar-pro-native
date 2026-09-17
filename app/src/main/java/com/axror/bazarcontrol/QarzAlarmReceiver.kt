@@ -22,7 +22,7 @@ class QarzAlarmReceiver : BroadcastReceiver() {
 
         if (joriyVaqt == qarzVaqt) {
             try {
-                val smsMatni = "Hurmatli $targetIsm, qarzni to'lash vaqti keldi. BazarControl Pro Kotlin."
+                val smsMatni = "Hurmatli $targetIsm, qarzni to'lash vaqti keldi. BazarControl Pro."
                 val smsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(targetTel, null, smsMatni, null, null)
             } catch (e: Exception) {
