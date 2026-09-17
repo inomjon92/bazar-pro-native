@@ -8,6 +8,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState) {
         super.onCreate(savedInstanceState)
         QarzAlarmReceiver.startAlarmTimer(this)
-        Toast.makeText(this, "BazarControl Pro (Kotlin) faollashdi! 🔒", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "BazarControl Pro faollashdi! 🔒", Toast.LENGTH_LONG).show()
     }
 }
