@@ -1,0 +1,30 @@
+name: Android APK Build
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodlarni yuklab olish
+        uses: actions/checkout@v4
+
+      - name: Java JDK 17 ni o'rnatish
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle poydevorini noldan qurish va ruxsat berish
+        run: |
+          gradle wrapper --gradle-version 8.0
+          chmod +x gradlew
+
+      - name: APK faylini muvaffaqiyatli yig'ish (Build)
+        run: |
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Tayyor APK faylini serverda saqlash
+        uses: actions/upload-artifact@v4
+        with:
+          name: BazarControl-APK
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
