@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BazarControl"
-include ':app'
+include ':ilova'
