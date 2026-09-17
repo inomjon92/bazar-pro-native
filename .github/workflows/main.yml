@@ -21,10 +21,10 @@ jobs:
 
       - name: Build APK
         run: |
-          ./gradlew :ilova:assembleRelease --no-daemon
+          ./gradlew :ilova:assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: BazarControl-Kotlin-APK
-          path: ilova/build/outputs/apk/release/ilova-release-unsigned.apk
+          path: ilova/build/outputs/apk/debug/ilova-debug.apk
