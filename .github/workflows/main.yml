@@ -1,0 +1,30 @@
+name: Android Kotlin APK Build
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodlarni yuklab olish
+        uses: actions/checkout@v4
+
+      - name: Java JDK 17 ni o'rnatish
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle poydevorini noldan qurish va ruxsat berish
+        run: |
+          gradle wrapper --gradle-version 8.1.1
+          chmod +x gradlew
+
+      - name: Kotlin APK faylini muvaffaqiyatli yig'ish (Build)
+        run: |
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Tayyor Kotlin APK faylini serverda saqlash
+        uses: actions/upload-artifact@v4
+        with:
+          name: BazarControl-Kotlin-APK
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
