@@ -5,25 +5,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Kodlarni yuklab olish
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Java JDK 17 ni o'rnatish
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Gradle poydevorini noldan qurish va ruxsat berish
+      - name: Setup Gradle
         run: |
           gradle wrapper --gradle-version 8.1.1
           chmod +x gradlew
 
-      - name: Kotlin APK faylini muvaffaqiyatli yig'ish (Build)
+      - name: Build APK
         run: |
           ./gradlew :ilova:assembleRelease --no-daemon
 
-      - name: Tayyor Kotlin APK faylini serverda saqlash
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: BazarControl-Kotlin-APK
